@@ -1,0 +1,225 @@
+*,
+*::after,
+*::before{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+:root{
+  --light_red: #eb4a5a;
+  --white_glass: #f9fafc;
+  --light_gray: #f6f3f3;
+  --shadow_gray: #434343;
+  --shadow_blue: #274671;
+}
+body {
+  font-family: 'Helvetica Neue', sans-serif ;
+  
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  background-color: var(--white_glass);
+  border-bottom: 1px solid var(--light_gray);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+nav img{
+  height: 60px;
+}
+nav button{
+  margin: 15px;
+  background-color: transparent;
+  border: none
+}
+nav button i{
+  font-size: 23px;
+  color: var(--shadow_gray);
+  cursor: pointer;
+  transition: 0.5s;
+}
+nav button i:hover{
+  font-size: 26px;
+}
+.car-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40px;
+  background-color: var(--white_glass);
+  position: fixed;
+  height: 85%;
+  border-radius: 20px;
+  top: 65px;
+  width: 35%;
+  box-shadow: -10px 15px 50px 0px var(--shadow_blue);
+  left: 110%; 
+  overflow-y: scroll;
+  transition: 1s; 
+}
+.car-visible{
+  left: 65%;
+}
+header{
+  background-color: var(--light_red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+}
+header img{
+  height: 200px;
+  margin-top: 75px;
+}
+.label_products{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 40px ;
+  padding: 20px;
+}
+.label_products h3{
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--shadow_gray);
+}
+.label_products select{
+  margin-left: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 120px;
+  font-family: inherit;
+  border: 1px solid rgb(194, 191, 191);
+  border-radius: 5px;
+  color: var(--shadow_gray);
+  transition: 0.5s;
+  width: 250px;
+  height: 30px;
+  cursor: pointer;
+}
+#producs_types option{
+  font-size: 18px;
+}
+.label_products select:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 0px 10px 0.1px var(--shadow_blue);
+}
+.product_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 60px 40px;  
+}
+.cls_show_producs{
+  max-width: 300px;
+  height: 100%;
+  transition: all 0.5s;
+ }
+ .cls_show_producs:hover{
+  transform: translateY(-10px);
+  border-radius: 20px;
+  border: 1px solid var(--white_glass);
+  box-shadow: 0px 0px 50px 0.1px var(--shadow_blue);
+ }
+.product_img img{
+  max-width: 250px;
+  margin-left: 18px;
+}
+.product_name {
+  margin-bottom: 30px;
+}
+.product_name p {
+  width: 280px;
+  padding-left: 20px;
+  height: 25px;
+  font-family: 16px;
+  font-weight: bold;
+  color: var(--shadow_gray);
+}
+.product_color{
+  display: flex;
+  width: 80px;
+  gap: 15px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.product_color1{
+ background-color: var(--shadow_gray);
+ width: 40px;
+ height: 30px;
+ border-radius: 100%;
+}
+.product_color2{
+ background-color: var(--light_red);
+ width: 40px;
+ height: 30px;
+ border-radius: 100%;
+}
+.product_price p{
+  font-family: 20px;
+  font-weight: bold;
+  text-align: end;
+  color: var(--shadow_gray);
+  margin-right: 50px;
+}
+.dv-btns{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+.product_button button{
+  background-color: var(--light_red);
+  color: var(--white_glass);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+  border-radius: 20px;
+  padding: 8px;
+  margin-left: 18px;
+  border: 1xp solid var(--white_glass);
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+.product_button button:hover {
+  transform: translateY(-3px);
+}
+.product_button_details button{
+  background-color: var(--shadow_blue);
+  color: var(--white_glass);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+  border-radius: 20px;
+  padding: 8px;
+  margin-left: 18px;
+  border: 1xp solid var(--white_glass);
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+.product_button_details button:hover {
+  transform: translateY(-3px);
+}
+.car__product{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.car__product__image img{
+  width: 200px;
+  height: 200px;
+  margin-top: 15px;
+}
+.car__product__image{
+  
+}
+
+.modal_details{
+  
+}
