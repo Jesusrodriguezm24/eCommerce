@@ -4,6 +4,7 @@ const httpUrl='https://ecommercebackend.fundamentos-29.repl.co/';
 //variables para cargar los div del carrito
 const cartToggle = document.querySelector('.cart-toggle');
 const cartMenu = document.querySelector('.cart-menu');
+const cart_Color = document.querySelector('nav button i');
 
 //variables para obtener los selectores
 const cls_products = document.querySelector("#cls_producs");
@@ -21,9 +22,17 @@ let productsInfo = [];
 let cartProductList = [];
 
 //* listener para mostrar el menu desplegable del carrito.
-cartToggle.addEventListener('click', () => {
-cartMenu.classList.toggle("cart-visible")
+cartToggle.addEventListener('mouseover', () => {
+  cartMenu.classList.toggle("cart-visible")
+  cart_Color.classList.toggle('cartColor');
 })
+
+cartMenu.addEventListener('mouseleave', () => {
+  cartMenu.classList.remove("cart-visible")
+  cart_Color.classList.toggle('cartColor');
+})
+
+
 
 function getProducts() {
   axios.get(httpUrl)
@@ -125,7 +134,7 @@ function cartElementsHTML(){
         </div>
         <div class="cart__product__button">
           <button class="delete__product" data-id="${product.id}">
-            Delete
+          <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       </div>
