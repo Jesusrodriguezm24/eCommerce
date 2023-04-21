@@ -2,27 +2,27 @@
 const httpUrl='https://ecommercebackend.fundamentos-29.repl.co/';
 
 //variables para cargar los div del carrito
-const carToggle = document.querySelector('.car-toggle');
-const carMenu = document.querySelector('.car-menu');
+const cartToggle = document.querySelector('.cart-toggle');
+const cartMenu = document.querySelector('.cart-menu');
 
 //variables para obtener los selectores
 const cls_products = document.querySelector("#cls_producs");
 const producs_filter = document.querySelector("#dv-producs_filter");
 
-//variable para obtener los id de los botones 'add to car'
+//variable para obtener los id de los botones 'add to cart'
 let product_btn_id = document.querySelector("#cls_producs");
-let car_products = document.querySelector('#car-products');
+let cart_products = document.querySelector('#cart-products');
 let btn_id ;
 
 //Arreglo para almacenar los productos
 let productsInfo = [];
 
 //Arreglo de productos para llenar el carrito
-let carProductList = [];
+let cartProductList = [];
 
 //* listener para mostrar el menu desplegable del carrito.
-carToggle.addEventListener('click', () => {
-carMenu.classList.toggle("car-visible")
+cartToggle.addEventListener('click', () => {
+cartMenu.classList.toggle("cart-visible")
 })
 
 function getProducts() {
@@ -70,13 +70,13 @@ producs_filter.addEventListener('change', () => {
 
  function addProduct(event){
 
-    if(event.target.classList.contains('add_btn_car')){
+    if(event.target.classList.contains('add_btn_cart')){
       const products = event.target.parentElement.parentElement.parentElement;
-      carProducts(products); 
+      cartProducts(products); 
    }
  }
 
-function carProducts(product){
+function cartProducts(product){
   const infoProduct = {
     id: product.querySelector('button').getAttribute('data-id'),
     image: product.querySelector('img').src,
@@ -86,10 +86,10 @@ function carProducts(product){
   }
 /////
 
-    if(carProductList.some(product => product.id === infoProduct.id)){
-      // Si el producto al que le doy click en infoProduct ya existe en carProducts, entonces:
-      const product = carProductList.map(product => {
-        // Como tengo un producto que ya existe dentro de carProducts, entonces debo mapearlo y sumarle una unidad a la cantidad del elemento igual.
+    if(cartProductList.some(product => product.id === infoProduct.id)){
+      // Si el producto al que le doy click en infoProduct ya existe en cartProducts, entonces:
+      const product = cartProductList.map(product => {
+        // Como tengo un producto que ya existe dentro de cartProducts, entonces debo mapearlo y sumarle una unidad a la cantidad del elemento igual.
         if(product.id === infoProduct.id){
           product.quantity ++;
           return product;
@@ -97,33 +97,33 @@ function carProducts(product){
           return product;
         }
       })
-      carProductList = [...product]
+      cartProductList = [...product]
     } else {
-      carProductList = [...carProductList, infoProduct]
+      cartProductList = [...cartProductList, infoProduct]
     }
-    console.log(carProductList)
-    carElementsHTML()
+    console.log(cartProductList)
+    cartElementsHTML()
 }
 
 
-function carElementsHTML(){
+function cartElementsHTML(){
 
-  car_products.innerHTML = "";
+  cart_products.innerHTML = "";
 
-  carProductList.forEach(product => {
+  cartProductList.forEach(product => {
     const div = document.createElement('div');
     // createElement, permite crear etiquetas desde el DOM.
     div.innerHTML = `
-      <div class="car__product">
-        <div class="car__product__image">
+      <div class="cart__product">
+        <div class="cart__product__image">
           <img src="${product.image}">
         </div>
-        <div class="car__product__description">
+        <div class="cart__product__description">
           <p>${product.name}</p>
           <p>Precio: ${product.price}</p>
           <p>Cantidad: ${product.quantity}</p>
         </div>
-        <div class="car__product__button">
+        <div class="cart__product__button">
           <button class="delete__product" data-id="${product.id}">
             Delete
           </button>
@@ -132,7 +132,7 @@ function carElementsHTML(){
       <hr>
     `;
     // appendChild permite insertar elementos al DOM, muy similar a innerHTML
-    car_products.appendChild(div);
+    cart_products.appendChild(div);
   })
 }
 
@@ -179,10 +179,10 @@ function showData(data){
                 </div>
                 <div class="dv-btns">
                     <div class="product_button">
-                        <button class="car_btn_button add_btn_car" id="add_btn_car" data-id="${item.id}">Add to car</button>
+                        <button class="cart_btn_button add_btn_cart" id="add_btn_cart" data-id="${item.id}">Add to cart</button>
                     </div>
                     <div class="product_button_details">
-                        <button class="btn_modal_details btn_details" id="btn_details">Details</button>
+                        <button class="btn_modal_details btn_details" id="btn_details">View details</button>
                     </div>
                 </div>
               </div>
@@ -190,3 +190,5 @@ function showData(data){
   }
   cls_products.innerHTML = show;
 }
+
+
