@@ -4,11 +4,14 @@ const httpUrl='https://ecommercebackend.fundamentos-29.repl.co/';
 //variables para cargar los div del carrito
 const cartToggle = document.querySelector('.cart-toggle');
 const cartMenu = document.querySelector('.cart-menu');
+const menuTitle = document.querySelector('.menu_title');
 const cart_Color = document.querySelector('nav button i');
 
 //variables para obtener los selectores
 const cls_products = document.querySelector("#cls_producs");
 const producs_filter = document.querySelector("#dv-producs_filter");
+const carDelete = document.querySelector("#cart");
+const carDeleteAll = document.querySelector("#empty-cart");
 
 //variable para obtener los id de los botones 'add to cart'
 let product_btn_id = document.querySelector("#cls_producs");
@@ -25,6 +28,7 @@ let cartProductList = [];
 cartToggle.addEventListener('mouseover', () => {
   cartMenu.classList.toggle("cart-visible")
   cart_Color.classList.toggle('cartColor');
+  carTitle()
 })
 
 cartMenu.addEventListener('mouseleave', () => {
@@ -32,6 +36,11 @@ cartMenu.addEventListener('mouseleave', () => {
   cart_Color.classList.toggle('cartColor');
 })
 
+//eliminar un producto del carrito
+carDelete.addEventListener('click', deleteProduct)
+
+//eliminar todos los productos del carrito
+carDeleteAll.addEventListener('click', deleteAllProducts)
 
 
 function getProducts() {
@@ -96,9 +105,7 @@ function cartProducts(product){
 /////
 
     if(cartProductList.some(product => product.id === infoProduct.id)){
-      // Si el producto al que le doy click en infoProduct ya existe en cartProducts, entonces:
       const product = cartProductList.map(product => {
-        // Como tengo un producto que ya existe dentro de cartProducts, entonces debo mapearlo y sumarle una unidad a la cantidad del elemento igual.
         if(product.id === infoProduct.id){
           product.quantity ++;
           return product;
@@ -114,14 +121,18 @@ function cartProducts(product){
     cartElementsHTML()
 }
 
+function carTitle(){
+  menuTitle.innerHTML = 
+          `<div class="dv-title-cart">
+              <h3 class="title_cart">Shopping cart</h3>
+           </div>
+          `
+}
 
 function cartElementsHTML(){
-
   cart_products.innerHTML = "";
-
   cartProductList.forEach(product => {
     const div = document.createElement('div');
-    // createElement, permite crear etiquetas desde el DOM.
     div.innerHTML = `
       <div class="cart__product">
         <div class="cart__product__image">
@@ -133,21 +144,18 @@ function cartElementsHTML(){
           <p>Cantidad: ${product.quantity}</p>
         </div>
         <div class="cart__product__button">
-          <button class="delete__product" data-id="${product.id}">
-          <i class="fa-solid fa-trash"></i>
+          <button class="delete__product">
+            <i class="fa-solid fa-trash delete_Product_car" data-id="${product.id}"></i>
           </button>
         </div>
       </div>
       <hr>
     `;
-    // appendChild permite insertar elementos al DOM, muy similar a innerHTML
-    cart_products.appendChild(div);
+   cart_products.appendChild(div);
   })
 }
 
-
-
-//funcion para pintar el filtro
+//funcion para mostrar el filtro
 function showFilter(){
   let show = '';
     show += `
@@ -200,4 +208,15 @@ function showData(data){
   cls_products.innerHTML = show;
 }
 
+function deleteProduct(event){
+  if(event.target.classList.contains('delete_Product_car')){
+    const productId = event.target.getAttribute('data-id');
+    cartProductList = cartProductList.filter(product => product.id !== productId);
+    cartElementsHTML();
+  }
+}
 
+function deleteAllProducts(){
+  cartProductList = [];
+  cartElementsHTML();
+}
