@@ -18,11 +18,20 @@ let product_btn_id = document.querySelector("#cls_producs");
 let cart_products = document.querySelector('#cart-products');
 let btn_id ;
 
+//variable para boton de detalles
+const modalDetails = document.querySelector("#cls_producs");
+
 //Arreglo para almacenar los productos
 let productsInfo = [];
 
 //Arreglo de productos para llenar el carrito
 let cartProductList = [];
+
+//cerrar el modal
+let btnModalClose = document.querySelector(".modal_container");
+
+//pintando el producto en modal
+let showModalContainer = document.querySelector(".modal_product_info");
 
 //* listener para mostrar el menu desplegable del carrito.
 cartToggle.addEventListener('mouseover', () => {
@@ -41,6 +50,9 @@ carDelete.addEventListener('click', deleteProduct)
 
 //eliminar todos los productos del carrito
 carDeleteAll.addEventListener('click', deleteAllProducts)
+
+//llamar el modal
+modalDetails.addEventListener('click', callModal)
 
 
 function getProducts() {
@@ -199,7 +211,7 @@ function showData(data){
                         <button class="cart_btn_button add_btn_cart" id="add_btn_cart" data-id="${item.id}">Add to cart</button>
                     </div>
                     <div class="product_button_details">
-                        <button class="btn_modal_details btn_details" id="btn_details">View details</button>
+                        <button class="btn_modal_details btn_details" id="btn_details" data-id="${item.id}">View details</button>
                     </div>
                 </div>
               </div>
@@ -220,3 +232,106 @@ function deleteAllProducts(){
   cartProductList = [];
   cartElementsHTML();
 }
+
+
+//Agregando frame modal y su boton de cerrar 
+
+function callModal(event){
+  if(event.target.classList.contains('btn_details')){
+    const productId = event.target.getAttribute('data-id');
+    const showProduct = productsInfo.filter(product => product.id == productId);
+    const element = document.querySelector('.modal_container');
+    if (element.classList.contains('modal_details')) {
+      element.classList.remove('modal_details');
+    }
+    ViewModal(showProduct);
+  }
+}
+
+
+
+
+function ViewModal(product){
+
+  let modal =  '';
+  for (const item of product) {
+    modal += `
+            <div class="cls_showModal_produc">     
+              <div class="showModal_name">
+                  <p>${item.name}</p>
+              </div>
+              <div class="showModal_color">
+                  <div class="showModal_color1">
+                  </div>
+                  <div class="showModal_color2">
+                  </div>
+              </div>
+              <div class="showModal_price">
+                  <p>$${item.price.toFixed(2)}</p>
+              </div>
+              <div class="showModal_description">
+                  <p>${item.description}</p>
+              </div>
+              <div class="showModal_colors">
+                  <h3>Colores</h3>
+                  <div class="showModal_colors_1">  
+                     <img src="${item.image}" alt="img"></img> 
+                  </div>
+              </div>
+              <h3>Tallas</h3>
+              <div class="showModal_tallas">
+                  <div class="showModal_talla_size">
+                    <p>S</p>
+                  </div>
+                  <div class="showModal_talla_size">
+                    <p>M</p>
+                  </div>
+                  <div class="showModal_talla_size">
+                    <p>L</p>
+                  </div>
+                  <div class="showModal_talla_size">
+                    <p>XL</p>
+                  </div>
+                  <div class="showModal_talla_size">
+                    <p>2XL</p>
+                  </div>
+                  <div class="showModal_talla_size">
+                    <p>3XL</p>
+                  </div>
+              </div>
+              <div class="showModal-btns">
+                  <div class="showModal_button">
+                      <button class="cart_btn_button add_btn_cart" id="add_btn_cart" data-id="${item.id}">Add to cart</button>
+                  </div>
+              </div>
+              <div class="showModal_img">
+                  <img src="${item.image}" alt="img"></img>  
+              </div>
+            </div>
+    `
+  }
+    showModalContainer.innerHTML = modal;
+    
+}
+
+
+
+  ///////////////
+
+
+
+//boton de cerrar el modal
+btnModalClose.addEventListener('click', closeModal);
+
+function closeModal(){
+  const element = document.querySelector('.modal_container');
+  element.classList.add('modal_details');
+}
+
+
+//
+
+
+
+//agragar numero de productos en el carrrito
+
