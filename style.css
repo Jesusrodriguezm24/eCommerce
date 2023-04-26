@@ -18,6 +18,7 @@ body {
   font-size: 16px;
   font-weight: bold;
 }
+/*menu navegacion*/
 nav{
   display: flex;
   justify-content: space-between;
@@ -92,6 +93,7 @@ nav button i:hover{
   font-size: 18px;
   -webkit-user-select: none;
 }
+/*Header*/
 header{
   background-color: var(--light_red);
   display: flex;
@@ -103,6 +105,7 @@ header img{
   height: 200px;
   margin-top: 75px;
 }
+/*body-lebel y selecion*/
 .label_products{
   display: flex;
   justify-content: space-around;
@@ -134,6 +137,7 @@ header img{
   transform: translateY(-3px);
   box-shadow: 0px 0px 10px 0.1px var(--shadow_blue);
 }
+/*body-div principal de productos*/
 .product_container{
   display: flex;
   flex-wrap: wrap;
@@ -152,6 +156,7 @@ header img{
   outline: 4px solid var(--light_red);
   box-shadow: 0px 0px 50px 0.1px var(--shadow_blue);
  }
+ /*body-divs interno de productos*/
 .product_img img{
   max-width: 250px;
   margin-left: 20px;
@@ -224,6 +229,7 @@ header img{
 .product_button_details button:hover {
   transform: translateY(-3px);
 }
+/*Nav-productos en el carrito*/
 .cart__product{
   display: flex;
   width: 100%;
@@ -287,14 +293,15 @@ header img{
 .btn_empty_cart:hover {
   transform: translateY(-3px);
 }
+/*Main-stilos del modal*/
 .modal_container{
   background-color: var(--white_glass);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75%;
-  height: 85%;
+  width: 1000px;
+  height: 530px;
   z-index: 25;
   border-radius: 15px;
   border: 1px solid var(--shadow_blue);
@@ -309,7 +316,6 @@ header img{
   height: 100%;
   display: flex;
   border-radius: 15px;
-
 }
 .modal_product_info{
   background-color: var(--light_gray);
@@ -351,7 +357,25 @@ header img{
   flex-direction: column;
   margin: 30px;
   width: 100%;
-  position: absolute;
+  position:absolute ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 .showModal_name{
   font-size: 22px;
@@ -394,11 +418,11 @@ header img{
   height: 60px;
   gap: 50px;
   padding: 10px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 .showModal_talla_size{
   gap: 30px;
-  border: 1px solid;
+  border: 1px solid var(--shadow_blue);
   font-size: 20px;
   padding: 10px;
   transition: 0.8s;
@@ -432,6 +456,173 @@ header img{
   position: relative;
   width: 350px;
   height: 350px;
-  bottom: 390px;
+  bottom: 400px;
   left: 560px;
+}
+.numCartProduct{
+  background-color: var(--light_red);
+  width: 20px;
+  text-align: center;
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-weight: bold;
+  color: var(--white_glass);
+}
+
+
+.cls_footer{
+  width: 100%;
+  min-height: 40px;
+  background-color: var(--light_red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+ 
+}
+.createBy{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: var(--light_gray);
+}
+
+/*Pantalla de tablet*/
+@media screen and (max-width:768px) {
+  
+  .cart-menu{
+      width: 60%;
+  }
+  .cart-visible{
+      left: 40%;
+  }
+
+  .modal_container{
+      width: 650px;
+      height: 510px;
+  }
+
+  .showModal_name{
+      font-size: 19px;
+      margin-bottom: 18px;
+  }
+  .showModal_price{
+      font-size: 20px;
+      margin-bottom: 18px;
+  }
+  .showModal_description{
+      max-width: 350px;
+      font-size: 15px;
+      margin-bottom: 15px;
+  }
+  .showModal_colors{
+      width: 200px;
+      height: 80px;
+      margin-bottom: 45px;
+  }
+  .showModal_colors h3{
+      font-size: 18px;
+  }
+  .showModal_tallas{
+      gap: 20px;
+      height: 40px;
+  }
+  .showModal_talla_size{
+      font-size: 14px;
+      padding: 6px;
+  }
+  .showModal_img img{
+      position: relative;
+      width: 270px;
+      height: 270px;
+      bottom: 380px;
+      left: 350px;
+  }
+}
+
+
+/*Pantalla de telefono*/
+@media screen and (max-width:390px) {
+  .label_products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px ;
+    padding: 15px;
+  }
+  .label_products h3{
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  .label_products select{
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #producs_types option{
+    font-size: 18px;
+  }
+  .cart-menu{
+      width: 100%;
+  }
+  .cart-visible{
+      left: 0%;
+  }
+
+  .modal_container{
+      width: 100%;
+      height: 500px;
+  }
+
+  .showModal_name{
+      font-size: 16px;
+      margin-bottom: 16px;
+  }
+  .showModal_price{
+      font-size: 18px;
+      margin-bottom: 16px;
+  }
+  .showModal_description{
+      max-width: 180px;
+      font-size: 12px;
+      margin-bottom: 14px;
+  }
+  .showModal_colors{
+      width: 10px;
+      height: 80px;
+      margin-bottom: 45px;
+  }
+  .showModal_colors h3{
+      font-size: 14px;
+  }
+  .showModal_colors_1 img{
+      width: 80px;
+      height: 80px;
+      margin-left: 5px;
+  }
+  .showModal_tallas{
+      gap: 6px;
+      height: 30px;
+  }
+  .showModal_talla_size{
+      font-size: 12px;
+      padding: 6px;
+  }
+  .showModal_img img{
+      position: relative;
+      width: 200px;
+      height: 200px;
+      bottom: 310px;
+      left: 170px;
+  }
+  .showModal_button button{
+      width: 100px;
+      padding: 6px;
+      font-size: 16px;
+      margin-left: 15%;
+  }
+
 }

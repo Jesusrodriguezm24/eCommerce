@@ -16,7 +16,15 @@ const carDeleteAll = document.querySelector("#empty-cart");
 //variable para obtener los id de los botones 'add to cart'
 let product_btn_id = document.querySelector("#cls_producs");
 let cart_products = document.querySelector('#cart-products');
-let btn_id ;
+
+let btn_addModalCart = document.querySelector('#add_btn_cartModal');
+
+//let btn_addModal
+
+
+//numero en el carrito
+let numCartProducts = document.querySelector(".numCartProduct");
+
 
 //variable para boton de detalles
 const modalDetails = document.querySelector("#cls_producs");
@@ -28,7 +36,9 @@ let productsInfo = [];
 let cartProductList = [];
 
 //cerrar el modal
-let btnModalClose = document.querySelector(".modal_container");
+let btnModalClose = document.querySelector(".btn_close_modal");
+//error en el cerrado
+
 
 //pintando el producto en modal
 let showModalContainer = document.querySelector(".modal_product_info");
@@ -96,11 +106,13 @@ producs_filter.addEventListener('change', () => {
 })
 
 
-   product_btn_id.addEventListener('click', addProduct);
+product_btn_id.addEventListener('click', addProduct);
+//btn_addModalCart.addEventListener('click', addProduct);
+//cart_btn_button_modal
 
  function addProduct(event){
-
     if(event.target.classList.contains('add_btn_cart')){
+
       const products = event.target.parentElement.parentElement.parentElement;
       cartProducts(products); 
    }
@@ -130,6 +142,7 @@ function cartProducts(product){
       cartProductList = [...cartProductList, infoProduct]
     }
     console.log(cartProductList)
+    numCart();
     cartElementsHTML()
 }
 
@@ -163,6 +176,10 @@ function cartElementsHTML(){
       </div>
       <hr>
     `;
+    if(cartProductList.length == 0){
+      const numProducts = ``;
+      numCartProducts.innerHTML = numProducts;
+    }
    cart_products.appendChild(div);
   })
 }
@@ -224,12 +241,14 @@ function deleteProduct(event){
   if(event.target.classList.contains('delete_Product_car')){
     const productId = event.target.getAttribute('data-id');
     cartProductList = cartProductList.filter(product => product.id !== productId);
+    numCart();
     cartElementsHTML();
   }
 }
 
 function deleteAllProducts(){
   cartProductList = [];
+  numCart();
   cartElementsHTML();
 }
 
@@ -301,7 +320,7 @@ function ViewModal(product){
               </div>
               <div class="showModal-btns">
                   <div class="showModal_button">
-                      <button class="cart_btn_button add_btn_cart" id="add_btn_cart" data-id="${item.id}">Add to cart</button>
+                      <button class="btn_button_modal add_btn_cartModal" id="add_btn_cartModal" data-id="${item.id}">Add to cart</button>
                   </div>
               </div>
               <div class="showModal_img">
@@ -311,27 +330,34 @@ function ViewModal(product){
     `
   }
     showModalContainer.innerHTML = modal;
-    
 }
-
-
-
-  ///////////////
 
 
 
 //boton de cerrar el modal
 btnModalClose.addEventListener('click', closeModal);
-
 function closeModal(){
   const element = document.querySelector('.modal_container');
   element.classList.add('modal_details');
 }
 
-
-//
-
-
-
 //agragar numero de productos en el carrrito
+function numCart(){
+  const numProducts = cartProductList.length;
+  if(numProducts == 0){
+    let nums = ``
+    return numCartProducts.innerHTML = nums;
+  }
+  numCartProducts.innerHTML = numProducts;
+}
 
+function create_by(){
+    let create = `
+        <div class="createBy">  
+          <p>Create By Jesús E. Rodriguez M.</p>
+          <i class="fa-regular fa-registered"></i>
+        </div>
+        `;
+    document.querySelector(".cls_footer").innerHTML = create
+  }
+create_by();
