@@ -4,6 +4,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  -webkit-user-select: none;
 }
 :root{
   --light_red: #eb4a5a;
@@ -76,12 +77,10 @@ nav button i:hover{
 }
 .menu_title{
   width: 100%;
- 
 }
 .dv-title-cart{
   position: relative;
   min-height: 60px;
-  
   background-color: var(--light_red);
   border-bottom: 2px solid var(--shadow_blue);
 }
@@ -91,7 +90,6 @@ nav button i:hover{
   padding-top: 20px;
   text-align: center;
   font-size: 18px;
-  -webkit-user-select: none;
 }
 /*Header*/
 header{
@@ -489,14 +487,34 @@ header img{
   color: var(--light_gray);
 }
 
-/*Pantalla de tablet*/
+/*Pantalla pc media*/
+@media screen and (max-width:992px) {
+
+  .cart-menu{
+    width: 40%;
+  }
+  .cart-visible{
+    left: 60%;
+  }
+  .modal_container{
+    width: 950px;
+  }
+  .showModal_img img{
+    width: 290px;
+    height: 290px;
+    bottom: 380px;
+    left: 540px;
+  }
+}
+
+/*Pantalla de tablet grande*/
 @media screen and (max-width:768px) {
   
   .cart-menu{
-      width: 60%;
+      width: 56%;
   }
   .cart-visible{
-      left: 40%;
+      left: 44%;
   }
 
   .modal_container{
@@ -534,17 +552,12 @@ header img{
       padding: 6px;
   }
   .showModal_img img{
-      position: relative;
-      width: 270px;
-      height: 270px;
-      bottom: 380px;
-      left: 350px;
+      left: 340px;
   }
 }
 
-
-/*Pantalla de telefono*/
-@media screen and (max-width:390px) {
+/*Pantalla de tablet media*/
+@media screen and (max-width:576px) {
   .label_products{
     display: flex;
     flex-direction: column;
@@ -554,23 +567,141 @@ header img{
     padding: 15px;
   }
   .label_products h3{
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 25px;
   }
   .label_products select{
     margin-left: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    margin-top: 10px;
+  }
+  .cart-menu{
+      width: 80%;
+  }
+  .cart-visible{
+      left: 20%;
+  }
+  .modal_container{
+      width: 90%;
+      height: 450px;
+  }
+  .showModal_name{
+      font-size: 17px;
+      margin-bottom: 16px;
+  }
+  .showModal_price{
+      font-size: 18px;
+      margin-bottom: 16px;
+  }
+  .showModal_description{
+      max-width: 250px;
+      font-size: 12px;
+      margin-bottom: 14px;
+  }
+  .showModal_colors{
+      width: 10px;
+      height: 80px;
+      margin-bottom: 45px;
+  }
+  .showModal_colors h3{
+      font-size: 14px;
+  }
+  .showModal_colors_1 img{
+      width: 70px;
+      height: 70px;
+      margin-left: 7px;
+  }
+  .showModal_tallas{
+      gap: 15px;
+      height: 30px;
+  }
+  .showModal_talla_size{
+      font-size: 12px;
+  }
+  .showModal_img img{
+      width: 220px;
+      height: 220px;
+      bottom: 320px;
+      left: 250px;
+  }
+  .showModal_button button{
+      width: 110px;
+      padding: 6px;
+      font-size: 15px;
+      margin-left: 18%;
+  }
+
+}
+
+/*Pantalla de telefono*/
+@media screen and (max-width:320px) {
+  .label_products h3{
+    font-size: 20px;
+    margin-bottom: 16px;
   }
   #producs_types option{
     font-size: 18px;
   }
   .cart-menu{
       width: 100%;
+      
   }
   .cart-visible{
       left: 0%;
   }
+  .dv-title-cart h3{
+    font-size: 17px;
+  }
+  .cls_show_producs{
+    width: 280px;
+  }
+
+
+
+  .cart__product{
+    width: 95%;
+    margin-left: 20px;
+  }
+  .cart__product__image img{
+    width: 110px;
+    height: 110px;
+    margin-top: 10px; 
+  }
+  .cart__product__description{
+    gap: 15px;
+    margin: 3px;
+    margin-top: 6px; 
+  }
+  .cart__product__description p{
+    font-size: 13px;
+    font-weight: 100px;
+  }
+  .cart__product__button{
+    padding: 0px;
+    padding-right: 10px;
+    width: 150px;
+  }
+  .product_button button{
+    background-color: var(--light_red);
+    color: var(--white_glass);
+    cursor: pointer;
+    width: 120px;
+    border-radius: 20px;
+    padding: 8px;
+    border: 1xp solid var(--white_glass);
+    transition: 0.5s;
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+
+
+
+
 
   .modal_container{
       width: 100%;
