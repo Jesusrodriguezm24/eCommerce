@@ -17,7 +17,7 @@ const carDeleteAll = document.querySelector("#empty-cart");
 let product_btn_id = document.querySelector("#cls_producs");
 let cart_products = document.querySelector('#cart-products');
 
-let btn_addModalCart = document.querySelector('#add_btn_cartModal');
+let btn_addModalCart = document.querySelector('.modal_product_info');
 
 //let btn_addModal
 
@@ -43,26 +43,71 @@ let btnModalClose = document.querySelector(".btn_close_modal");
 //pintando el producto en modal
 let showModalContainer = document.querySelector(".modal_product_info");
 
-//* listener para mostrar el menu desplegable del carrito.
-cartToggle.addEventListener('mouseover', () => {
-  cartMenu.classList.toggle("cart-visible")
-  cart_Color.classList.toggle('cartColor');
-  carTitle()
-})
+loadListeners();
 
-cartMenu.addEventListener('mouseleave', () => {
-  cartMenu.classList.remove("cart-visible")
-  cart_Color.classList.toggle('cartColor');
-})
+function loadListeners(){
 
-//eliminar un producto del carrito
-carDelete.addEventListener('click', deleteProduct)
+  //* listener para mostrar el menu desplegable del carrito.
+  cartToggle.addEventListener('mouseover', () => {
+    cartMenu.classList.toggle("cart-visible")
+    cart_Color.classList.toggle('cartColor');
+    carTitle()
+  })
 
-//eliminar todos los productos del carrito
-carDeleteAll.addEventListener('click', deleteAllProducts)
+  cartMenu.addEventListener('mouseleave', () => {
+    cartMenu.classList.remove("cart-visible")
+    cart_Color.classList.toggle('cartColor');
+  })
 
-//llamar el modal
-modalDetails.addEventListener('click', callModal)
+  //eliminar un producto del carrito
+  carDelete.addEventListener('click', deleteProduct)
+
+  //eliminar todos los productos del carrito
+  carDeleteAll.addEventListener('click', deleteAllProducts)
+
+  //llamar el modal
+  modalDetails.addEventListener('click', callModal)
+
+  //llamar el load del DOM para cargar el localStorage
+  document.addEventListener('DOMContentLoaded', () => {
+    cartProductList = JSON.parse(localStorage.getItem('cart')) || [];
+    cartElementsHTML();
+    ////////////////
+  })
+
+  //agregar al carrito
+  product_btn_id.addEventListener('click', addProduct);
+  //agregar al carrito desde el modal
+  btn_addModalCart.addEventListener('click', addProduct);
+
+  //cerrar el modal
+  btnModalClose.addEventListener('click', closeModal);
+
+  producs_filter.addEventListener('change', () => {
+    let select = document.querySelector("#producs_types");
+    switch(select.value) {
+        case "all":
+          showData(productsInfo.sort((a, b) => a.id - b.id));
+          break;
+        case "price":
+          showData(productsInfo.sort((a, b) => a.price - b.price));
+          break;
+        case "hoddie":
+          showData(productsInfo.filter(element => element.category === 'hoddie'));
+          break;
+        case "sweater":
+          showData(productsInfo.filter(element => element.category === 'sweater'));
+          break;
+        default:
+          showData(productsInfo);
+          break;
+      }
+  })
+
+  numProductCart()
+
+}
+
 
 
 function getProducts() {
@@ -81,53 +126,45 @@ function getProducts() {
 getProducts();
 
 
-
-
-
-producs_filter.addEventListener('change', () => {
-  let select = document.querySelector("#producs_types");
-  switch(select.value) {
-      case "all":
-        showData(productsInfo.sort((a, b) => a.id - b.id));
-        break;
-      case "price":
-        showData(productsInfo.sort((a, b) => a.price - b.price));
-        break;
-      case "hoddie":
-        showData(productsInfo.filter(element => element.category === 'hoddie'));
-        break;
-      case "sweater":
-        showData(productsInfo.filter(element => element.category === 'sweater'));
-        break;
-      default:
-        showData(productsInfo);
-        break;
-    }
-})
-
-
-product_btn_id.addEventListener('click', addProduct);
-//btn_addModalCart.addEventListener('click', addProduct);
-//cart_btn_button_modal
-
  function addProduct(event){
-    if(event.target.classList.contains('add_btn_cart')){
+
+  if(event.target.classList.contains('add_btn_cart')){
 
       const products = event.target.parentElement.parentElement.parentElement;
-      cartProducts(products); 
+      const status = 'general'; 
+      cartProducts(products, status); 
+   }
+
+   else if(event.target.classList.contains('add_btn_cartModal')){
+    
+      const products = event.target.parentElement.parentElement.parentElement;
+      const status = 'modal';
+      cartProducts(products, status); 
    }
  }
 
-function cartProducts(product){
-  const infoProduct = {
-    id: product.querySelector('button').getAttribute('data-id'),
-    image: product.querySelector('img').src,
-    name: product.querySelector('.product_name p').textContent,
-    price: product.querySelector('.product_price p').textContent,
-    quantity: 1
+function cartProducts(product, status){
+  
+  let infoProduct={};
+  if (status === 'general'){
+    infoProduct = {
+      id: product.querySelector('button').getAttribute('data-id'),
+      image: product.querySelector('img').src,
+      name: product.querySelector('.product_name p').textContent,
+      price: product.querySelector('.product_price p').textContent,
+      quantity: 1
+    }
   }
-/////
-
+  else if (status === 'modal'){
+    infoProduct = {
+      id: product.querySelector('button').getAttribute('data-id'),
+      image: product.querySelector('img').src,
+      name: product.querySelector('.showModal_name p').textContent,
+      price: product.querySelector('.showModal_price p').textContent,
+      quantity: 1
+    }
+  }
+ 
     if(cartProductList.some(product => product.id === infoProduct.id)){
       const product = cartProductList.map(product => {
         if(product.id === infoProduct.id){
@@ -141,9 +178,9 @@ function cartProducts(product){
     } else {
       cartProductList = [...cartProductList, infoProduct]
     }
-    console.log(cartProductList)
+   
     numCart();
-    cartElementsHTML()
+    cartElementsHTML();
 }
 
 function carTitle(){
@@ -176,12 +213,20 @@ function cartElementsHTML(){
       </div>
       <hr>
     `;
-    if(cartProductList.length == 0){
-      const numProducts = ``;
-      numCartProducts.innerHTML = numProducts;
-    }
+   
    cart_products.appendChild(div);
   })
+  productsStorage();
+  numProductCart();
+  numCart()
+}
+
+//numero de productos en el carrito
+function numProductCart(){
+  if(cartProductList.length == 0){
+    const numProducts = ``;
+    numCartProducts.innerHTML = numProducts;
+  }
 }
 
 //funcion para mostrar el filtro
@@ -252,9 +297,7 @@ function deleteAllProducts(){
   cartElementsHTML();
 }
 
-
 //Agregando frame modal y su boton de cerrar 
-
 function callModal(event){
   if(event.target.classList.contains('btn_details')){
     const productId = event.target.getAttribute('data-id');
@@ -267,11 +310,7 @@ function callModal(event){
   }
 }
 
-
-
-
 function ViewModal(product){
-
   let modal =  '';
   for (const item of product) {
     modal += `
@@ -332,10 +371,7 @@ function ViewModal(product){
     showModalContainer.innerHTML = modal;
 }
 
-
-
 //boton de cerrar el modal
-btnModalClose.addEventListener('click', closeModal);
 function closeModal(){
   const element = document.querySelector('.modal_container');
   element.classList.add('modal_details');
@@ -361,3 +397,8 @@ function create_by(){
     document.querySelector(".cls_footer").innerHTML = create
   }
 create_by();
+
+//cargar y guardar en el localSttorage
+function productsStorage() {
+  localStorage.setItem('cart', JSON.stringify(cartProductList))
+}
