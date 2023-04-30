@@ -508,7 +508,7 @@ header img{
 }
 
 /*Pantalla de tablet grande*/
-@media screen and (max-width:768px) {
+@media screen and (min-width:768px) and (max-width:991px) {
   
   .cart-menu{
       width: 56%;
@@ -557,7 +557,8 @@ header img{
 }
 
 /*Pantalla de tablet media*/
-@media screen and (max-width:576px) {
+
+@media screen and (min-width:576px) and (max-width:767px) {
   .label_products{
     display: flex;
     flex-direction: column;
@@ -631,24 +632,40 @@ header img{
       font-size: 15px;
       margin-left: 18%;
   }
+  .btn_close_modal i{
+    font-size: 28px;
+  }
 
 }
 
 /*Pantalla de telefono*/
-@media screen and (max-width:320px) {
+@media screen and (min-width:390px) and (max-width:575px)  {
+  .label_products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px ;
+    padding: 15px;
+  }
   .label_products h3{
-    font-size: 20px;
-    margin-bottom: 16px;
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  .label_products select{
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 10px;
   }
   #producs_types option{
-    font-size: 18px;
+    font-size: 14px;
   }
   .cart-menu{
-      width: 100%;
-      
+      width: 90%;
   }
   .cart-visible{
-      left: 0%;
+      left: 10%;
   }
   .dv-title-cart h3{
     font-size: 17px;
@@ -656,17 +673,19 @@ header img{
   .cls_show_producs{
     width: 280px;
   }
-
+  .product_img img{
+    margin-left: 12px;
+  }
 
 
   .cart__product{
-    width: 95%;
-    margin-left: 20px;
+    width: 100%;
   }
   .cart__product__image img{
-    width: 110px;
-    height: 110px;
-    margin-top: 10px; 
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left:10px ; 
   }
   .cart__product__description{
     gap: 15px;
@@ -695,16 +714,8 @@ header img{
   }
 
 
-
-
-
-
-
-
-
-
   .modal_container{
-      width: 100%;
+      width: 99%;
       height: 500px;
   }
 
@@ -744,10 +755,10 @@ header img{
   }
   .showModal_img img{
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       bottom: 310px;
-      left: 170px;
+      left: 162px;
   }
   .showModal_button button{
       width: 100px;
@@ -755,5 +766,136 @@ header img{
       font-size: 16px;
       margin-left: 15%;
   }
+  .btn_close_modal i{
+    font-size: 25px;
+  }
+}
 
+@media screen and (min-width:300px) and (max-width:389px)  {
+
+  .label_products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px ;
+    padding: 15px;
+  }
+  .label_products h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .label_products select{
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 10px;
+  }
+  #producs_types option{
+    font-size: 12px;
+  }
+
+
+
+  .cart-menu{
+    width: 100%;
+  }
+  .cart-visible{
+    left: 0%;
+  }
+  .dv-title-cart h3{
+    font-size: 17px;
+  }
+  .cls_show_producs{
+    width: 270px;
+  }
+  .product_img img{
+    margin-left: 8px;
+  }
+
+
+  .cart__product{
+    width: 90%;
+  }
+  .cart__product__image img{
+    width: 90px;
+    height: 90px;
+    margin-top: 15px;
+    margin-left:40px ; 
+  }
+  .cart__product__description{
+    gap: 15px;
+    margin: 3px;
+    margin-top: 6px; 
+  }
+  .cart__product__description p{
+    font-size: 12px;
+    font-weight: 100px;
+  }
+  .cart__product__button{
+    padding: 0px;
+    padding-right: 10px;
+    width: 150px;
+  }
+
+  .modal_container{
+    width: 99%;
+    height: 380px;
+  }
+  .showModal_name{
+      font-size: 13px;
+      margin-bottom: 12px;
+  }
+  .showModal_price{
+      font-size: 13px;
+      margin-bottom: 12px;
+  }
+  .showModal_description{
+      max-width: 160px;
+      margin-left: -10px;
+      font-size: 11px;
+      margin-bottom: 12px;
+  }
+  .showModal_colors{
+      width: 0px;
+      height: 90px;
+      margin-bottom: 0px;
+  }
+  .showModal_colors h3{
+      font-size: 12px;
+  }
+  .showModal_colors_1 img{
+      width: 60px;
+      height: 60px;
+      margin-left: 3px;
+  }
+  .cls_showModal_produc h3{
+    font-size: 13px;
+  }
+  .showModal_tallas{
+      gap: 4px;
+      height: 10px;
+      margin-left: -5px;
+      margin-bottom: 30px;
+  }
+  .showModal_talla_size{
+      font-size: 11px;
+      padding: 3px;
+  }
+  .showModal_img img{
+      position: relative;
+      width: 150px;
+      height: 150px;
+      bottom: 230px;
+      left: 105px;
+  }
+  .showModal_button button{
+      width: 90px;
+      padding: 6px;
+      font-size: 13px;
+      margin-left: 12%;
+  }
+  .btn_close_modal i{
+    font-size: 20px;
+  }
 }

@@ -297,7 +297,7 @@ function ViewModal(product){
                      <img src="${item.image}" alt="img"></img> 
                   </div>
               </div>
-              <h3>Tallas</h3>
+              <h3 class="tallas_title">Tallas</h3>
               <div class="showModal_tallas">
                   <div class="showModal_talla_size">
                     <p>S</p>
