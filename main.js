@@ -16,15 +16,10 @@ const carDeleteAll = document.querySelector("#empty-cart");
 //variable para obtener los id de los botones 'add to cart'
 let product_btn_id = document.querySelector("#cls_producs");
 let cart_products = document.querySelector('#cart-products');
-
 let btn_addModalCart = document.querySelector('.modal_product_info');
-
-//let btn_addModal
-
 
 //numero en el carrito
 let numCartProducts = document.querySelector(".numCartProduct");
-
 
 //variable para boton de detalles
 const modalDetails = document.querySelector("#cls_producs");
@@ -46,7 +41,6 @@ let showModalContainer = document.querySelector(".modal_product_info");
 loadListeners();
 
 function loadListeners(){
-
   //* listener para mostrar el menu desplegable del carrito.
   cartToggle.addEventListener('mouseover', () => {
     cartMenu.classList.toggle("cart-visible")
@@ -74,7 +68,6 @@ function loadListeners(){
     cartElementsHTML();
     ////////////////
   })
-
   //agregar al carrito
   product_btn_id.addEventListener('click', addProduct);
   //agregar al carrito desde el modal
@@ -103,12 +96,8 @@ function loadListeners(){
           break;
       }
   })
-
   numProductCart()
-
 }
-
-
 
 function getProducts() {
   axios.get(httpUrl)
@@ -125,9 +114,7 @@ function getProducts() {
 //llamar la funcion getProducts() para cargar los productos de la Api
 getProducts();
 
-
  function addProduct(event){
-
   if(event.target.classList.contains('add_btn_cart')){
 
       const products = event.target.parentElement.parentElement.parentElement;
@@ -144,7 +131,6 @@ getProducts();
  }
 
 function cartProducts(product, status){
-  
   let infoProduct={};
   if (status === 'general'){
     infoProduct = {
@@ -165,7 +151,7 @@ function cartProducts(product, status){
     }
   }
  
-    if(cartProductList.some(product => product.id === infoProduct.id)){
+  if(cartProductList.some(product => product.id === infoProduct.id)){
       const product = cartProductList.map(product => {
         if(product.id === infoProduct.id){
           product.quantity ++;

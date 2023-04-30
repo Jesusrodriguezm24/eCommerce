@@ -356,24 +356,6 @@ header img{
   margin: 30px;
   width: 100%;
   position:absolute ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 .showModal_name{
   font-size: 22px;
@@ -469,7 +451,6 @@ header img{
   color: var(--white_glass);
 }
 
-
 .cls_footer{
   width: 100%;
   min-height: 40px;
@@ -478,7 +459,6 @@ header img{
   justify-content: center;
   align-items: center;
   font-size: 16px;
- 
 }
 .createBy{
   display: flex;
@@ -486,10 +466,8 @@ header img{
   gap: 8px;
   color: var(--light_gray);
 }
-
 /*Pantalla pc media*/
 @media screen and (max-width:992px) {
-
   .cart-menu{
     width: 40%;
   }
@@ -506,22 +484,18 @@ header img{
     left: 540px;
   }
 }
-
 /*Pantalla de tablet grande*/
 @media screen and (min-width:768px) and (max-width:991px) {
-  
   .cart-menu{
       width: 56%;
   }
   .cart-visible{
       left: 44%;
   }
-
   .modal_container{
       width: 650px;
       height: 510px;
   }
-
   .showModal_name{
       font-size: 19px;
       margin-bottom: 18px;
@@ -555,9 +529,7 @@ header img{
       left: 340px;
   }
 }
-
 /*Pantalla de tablet media*/
-
 @media screen and (min-width:576px) and (max-width:767px) {
   .label_products{
     display: flex;
@@ -635,9 +607,7 @@ header img{
   .btn_close_modal i{
     font-size: 28px;
   }
-
 }
-
 /*Pantalla de telefono*/
 @media screen and (min-width:390px) and (max-width:575px)  {
   .label_products{
@@ -676,8 +646,6 @@ header img{
   .product_img img{
     margin-left: 12px;
   }
-
-
   .cart__product{
     width: 100%;
   }
@@ -712,13 +680,10 @@ header img{
     transition: 0.5s;
     margin-bottom: 10px;
   }
-
-
   .modal_container{
       width: 99%;
       height: 500px;
   }
-
   .showModal_name{
       font-size: 16px;
       margin-bottom: 16px;
@@ -770,9 +735,7 @@ header img{
     font-size: 25px;
   }
 }
-
 @media screen and (min-width:300px) and (max-width:389px)  {
-
   .label_products{
     display: flex;
     flex-direction: column;
@@ -794,9 +757,6 @@ header img{
   #producs_types option{
     font-size: 12px;
   }
-
-
-
   .cart-menu{
     width: 100%;
   }
@@ -812,8 +772,6 @@ header img{
   .product_img img{
     margin-left: 8px;
   }
-
-
   .cart__product{
     width: 100%;
   }
@@ -821,7 +779,6 @@ header img{
     width: 90px;
     height: 90px;
     margin-top: 15px;
-     
   }
   .cart__product__description{
     gap: 15px;
@@ -837,7 +794,6 @@ header img{
     padding-right: 10px;
     width: 150px;
   }
-
   .modal_container{
     width: 99%;
     height: 380px;
